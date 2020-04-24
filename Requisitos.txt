@@ -1,0 +1,10 @@
+Fazer cadastro de funcionário onde cada funcionário deve ter o nome, o cpf e a data de cadastro.
+Quando uma pessoa fornece seus dados, esses dados são armazenados em um formulário que depois é
+passado para o sistema; Data de preenchimento do formulário;
+
+
+Deve permitir consultar funcionário pelo nome.
+Deve permitir consultar funcionário pela data de cadastro.
+Deve exibir funcionário mais antigo na empresa.
+Deve permitir excluir funcionário.
+Deve permitir alterar nome do funcionário e não alterar a data de cadastro.
