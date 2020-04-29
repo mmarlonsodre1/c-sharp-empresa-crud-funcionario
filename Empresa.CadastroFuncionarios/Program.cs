@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Empresa.CadastroFuncionarios
 {
     class Program
     {
-        static List<Funcionario> funcionarios = new List<Funcionario>();
+        static List<Funcionario> funcionariosCadastros = new List<Funcionario>();
 
         static void Main(string[] args)
         {
@@ -50,13 +51,13 @@ namespace Empresa.CadastroFuncionarios
             string cpf = Console.ReadLine(); //armazenar cpf
 
             DateTime dataDeCadastro = DateTime.Now; //armazenar data de cadastro
-
+            
             Funcionario funcionario = new Funcionario();
             funcionario.Cpf = cpf;
             funcionario.Nome = nome;
             funcionario.DataDeCadastro = dataDeCadastro;
 
-            funcionarios.Add(funcionario);
+            funcionariosCadastros.Add(funcionario);
 
             MenuPrincipal();
         }
@@ -69,10 +70,8 @@ namespace Empresa.CadastroFuncionarios
         static void ConsultarFuncionario()
         {
             Console.Clear();
-            //listar tudo
-            //primeiros vou listar tudo
-            //para cada func (string) in funcionarios(list<string>)
-            foreach (var funcionario in funcionarios)
+            
+            foreach (var funcionario in funcionariosCadastros)
             {
                 EscreverNaTela($"Nome: {funcionario.Nome} Cpf: {funcionario.Cpf} Cadastrado em: {funcionario.DataDeCadastro}");
             }
@@ -84,12 +83,68 @@ namespace Empresa.CadastroFuncionarios
         {
             EscreverNaTela("Escolha uma opção de filtro");
             EscreverNaTela("1 - Consultar pelo nome");
-            //IMPLEMENTAR A CONSULTA PELO NOME
             EscreverNaTela("2 - Data de cadastro");
-            //IMPLEMENTAR CONSULTA PELA DATA DE CADASTRO (OBS: PODE RETORNAR MAIS DE UM FUNCIONÁRIO)
-            //PARA QUEM TÁ AVANÇADO: FAÇA FUNCIONAR COM TESTES.
+            string tipoDeConsulta = Console.ReadLine();
 
-            //MenuPrincipal();
+            switch (tipoDeConsulta)
+            {
+                case "1": 
+                    ConsultarPeloNome(); 
+                    break;
+
+                case "2": 
+                    ConsultarPelaData(); 
+                    break;
+
+                default: 
+                    EscreverNaTela("Consulta incorreta");
+                    ExibirOpcoesDeFiltro();
+                    break;
+            }
+        }
+
+        static void ConsultarPeloNome()
+        {
+            EscreverNaTela("Entre com o nome da pessoa");
+            string nome = Console.ReadLine();
+
+            var funcionariosEncontrados = funcionariosCadastros.Where(funcionario => funcionario.Nome.Contains(nome, StringComparison.InvariantCultureIgnoreCase));
+
+            int quantidadeDefuncionariosEncontrados = funcionariosEncontrados.Count();
+
+            if (quantidadeDefuncionariosEncontrados > 0)
+            { 
+                EscreverNaTela("Funcionários contrados");
+
+                foreach (var funcionario in funcionariosEncontrados)
+                {
+                    Console.WriteLine(funcionario.Nome);
+                }
+            }
+            else
+            {
+                EscreverNaTela("Nenhum funcionário encontrado para o nome: " + nome);
+            }
+            
+            MenuPrincipal();
+        }
+
+        static void ConsultarPelaData()
+        {
+            Console.WriteLine("Entre com a data");
+
+            var dataDeCadastro = DateTime.Parse(Console.ReadLine());
+
+            var funcionarioFiltradosPelaDataDeCadastro = funcionariosCadastros.Where(funcionario => funcionario.DataDeCadastro.Date == dataDeCadastro);
+
+            EscreverNaTela("Funcionários contrados");
+
+            foreach (var funcionario in funcionarioFiltradosPelaDataDeCadastro)
+            {
+                Console.WriteLine(funcionario.Nome);
+            }
+
+            MenuPrincipal();
         }
 
         //int, float, decimal para numeros
