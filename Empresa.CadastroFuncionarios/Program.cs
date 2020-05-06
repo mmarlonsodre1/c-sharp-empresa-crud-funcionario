@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-namespace Empresa.CadastroFuncionarios
+﻿namespace Empresa.CadastroFuncionarios
 {
     class Program
     {

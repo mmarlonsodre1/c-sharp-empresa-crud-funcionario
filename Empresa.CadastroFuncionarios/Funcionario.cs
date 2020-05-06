@@ -17,8 +17,22 @@ namespace Empresa.CadastroFuncionarios
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
-        public DateTime DataDeCadastro { get; set; }
+        public DateTime DataDeCadastro { get; private set; }
+
+        public Funcionario()
+        {
+            DataDeCadastro = DateTime.Now;
+        }
+
+        public Funcionario(string nome, string cpf)
+        {
+            Nome = nome;
+            Cpf = cpf;
+            DataDeCadastro = DateTime.Now;
+        }
     }
+
+    //funcionario.DataDeCadastro;
 
     //abstração = utilizar classes, na maioria das vezes
     //encapsulamento = uso correto de métodos e modificadores de acesso

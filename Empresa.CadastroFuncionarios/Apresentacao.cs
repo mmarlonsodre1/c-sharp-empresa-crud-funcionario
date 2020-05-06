@@ -18,23 +18,23 @@ namespace Empresa.CadastroFuncionarios
             EscreverNaTela("Selecione uma operação");
             EscreverNaTela("1 - Cadastrar funcionário");
             EscreverNaTela("2 - Consultar funcionário");
-            EscreverNaTela("3 - Alterar dados do funcionário"); //Fazer
-            EscreverNaTela("4 - Excluir funcionário"); //Fazer
+            EscreverNaTela("3 - Alterar dados do funcionário");
+            EscreverNaTela("4 - Excluir funcionário");
             EscreverNaTela("5 - Sair");
 
             char operacao = Console.ReadLine().ToCharArray()[0];
 
-            if (operacao == '1')
+            switch (operacao)
             {
-                CadastrarFuncionario();
-            }
-            if (operacao == '2')
-            {
-                ConsultarFuncionario();
+                case '1': CadastrarFuncionario(); break;
+                case '2': ConsultarFuncionario(); break;
+                case '3': AlterarFuncionario(); break;
+                case '4': ExcluirFuncionario(); break;
+                default: EscreverNaTela("Opção inexistente"); break;
             }
         }
 
-        static void CadastrarFuncionario()
+        private static void CadastrarFuncionario()
         {
             LimparTela();
 
@@ -44,14 +44,14 @@ namespace Empresa.CadastroFuncionarios
             EscreverNaTela("Entre com o CPF:"); //pedir cpf
             string cpf = Console.ReadLine(); //armazenar cpf
 
-            DateTime dataDeCadastro = DateTime.Now; //armazenar data de cadastro
-
-            Funcionario funcionario = new Funcionario();
-            funcionario.Cpf = cpf;
-            funcionario.Nome = nome;
-            funcionario.DataDeCadastro = dataDeCadastro;
+            var funcionario = new Funcionario(nome, cpf);
 
             BancoDeDados.Salvar(funcionario);
+
+            EscreverNaTela("Cadastrado com sucesso!");
+            EscreverNaTela("Pressione qualquer tecla para continuar");
+            Console.ReadKey();
+            LimparTela();
 
             MenuPrincipal();
         }
@@ -61,23 +61,20 @@ namespace Empresa.CadastroFuncionarios
             Console.Clear();
         }
 
-        static void ConsultarFuncionario()
+        private static void ConsultarFuncionario()
         {
-            Console.Clear();
-
-            foreach (var funcionario in BancoDeDados.BuscarTodosOsFuncionarios())
-            {
-                EscreverNaTela($"Nome: {funcionario.Nome} Cpf: {funcionario.Cpf} Cadastrado em: {funcionario.DataDeCadastro}");
-            }
+            LimparTela();
 
             ExibirOpcoesDeFiltro();
+
         }
 
-        static void ExibirOpcoesDeFiltro()
+        private static void ExibirOpcoesDeFiltro()
         {
             EscreverNaTela("Escolha uma opção de filtro");
             EscreverNaTela("1 - Consultar pelo nome");
-            EscreverNaTela("2 - Data de cadastro");
+            EscreverNaTela("2 - Consultar pela data de cadastro");
+            EscreverNaTela("3 - Exibir todos os funcionários");
             string tipoDeConsulta = Console.ReadLine();
 
             switch (tipoDeConsulta)
@@ -90,6 +87,10 @@ namespace Empresa.CadastroFuncionarios
                     ConsultarPelaData();
                     break;
 
+                case "3":
+                    ExibirTodosOsFuncionarios();
+                    break;
+
                 default:
                     EscreverNaTela("Consulta incorreta");
                     ExibirOpcoesDeFiltro();
@@ -97,7 +98,7 @@ namespace Empresa.CadastroFuncionarios
             }
         }
 
-        static void ConsultarPeloNome()
+        private static void ConsultarPeloNome()
         {
             EscreverNaTela("Entre com o nome da pessoa");
             string nome = Console.ReadLine();
@@ -123,7 +124,7 @@ namespace Empresa.CadastroFuncionarios
             MenuPrincipal();
         }
 
-        static void ConsultarPelaData()
+        private static void ConsultarPelaData()
         {
             EscreverNaTela("Entre com a data");
 
@@ -137,6 +138,69 @@ namespace Empresa.CadastroFuncionarios
             {
                 EscreverNaTela(funcionario.Nome);
             }
+
+            MenuPrincipal();
+        }
+
+        private static void ExibirTodosOsFuncionarios()
+        {
+            foreach (var funcionario in BancoDeDados.BuscarTodosOsFuncionarios())
+            {
+                EscreverNaTela($"Nome: {funcionario.Nome} Cpf: {funcionario.Cpf} Cadastrado em: {funcionario.DataDeCadastro}");
+            }
+        }
+
+        //toda vez que é omitido o modificador de acesso, então ele assume como private
+        private static void AlterarFuncionario()
+        {
+            LimparTela();
+
+            //primeiro identificar o funcionário
+            EscreverNaTela("Entre com o CPF do funcionário:");
+            string cpf = Console.ReadLine();
+
+            //buscar o funcionário pelo identificador
+            var funcionario = BancoDeDados.BuscarFuncionarioPelo(cpf);
+
+            if (funcionario == null)
+            {
+                EscreverNaTela("CPF digitado incorretamente ou funcionário não encontrado");
+                EscreverNaTela("Pressione qualquer tecla para continuar");
+                Console.ReadKey();
+                MenuPrincipal();
+            }
+
+            //alterar os dados
+            EscreverNaTela("Entre com o novo nome:");
+            string novoNome = Console.ReadLine();
+            funcionario.Nome = novoNome;
+
+            //salvar funcionário
+            BancoDeDados.Salvar(funcionario);
+
+            MenuPrincipal();
+        }
+
+        private static void ExcluirFuncionario()
+        {
+            LimparTela();
+
+            //primeiro identificar o funcionário
+            EscreverNaTela("Entre com o CPF do funcionário:");
+            string cpf = Console.ReadLine();
+
+            //buscar o funcionário pelo identificador
+            var funcionario = BancoDeDados.BuscarFuncionarioPelo(cpf);
+
+            if (funcionario == null)
+            {
+                EscreverNaTela("CPF digitado incorretamente ou funcionário não encontrado");
+                EscreverNaTela("Pressione qualquer tecla para continuar");
+                Console.ReadKey();
+                MenuPrincipal();
+            }
+
+            BancoDeDados.Excluir(funcionario);
 
             MenuPrincipal();
         }
