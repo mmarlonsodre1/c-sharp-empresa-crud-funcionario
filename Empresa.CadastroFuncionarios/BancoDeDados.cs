@@ -15,24 +15,43 @@ namespace Empresa.CadastroFuncionarios
         
         public static void Salvar(Funcionario funcionario)
         {
-            bool funcionarioJaExiste = false;
+            bool funcionarioJaExisteNaListaDeCadastrados = false;
 
-            foreach (var funcionarioNaLista in funcionariosCadastros)
+            //algoritmo para dizer se já existe na lista ou não
+            foreach (var func in funcionariosCadastros)
             {
-                if (funcionarioNaLista == funcionario)
+                if (func == funcionario)
                 {
-                    funcionarioJaExiste = true; 
-                    break;
+                    funcionarioJaExisteNaListaDeCadastrados = true;
                 }
             }
 
-            if (funcionarioJaExiste == false)
+            //executar essa linha somente se o funcionario não existe na lista de cadastrados
+            if (funcionarioJaExisteNaListaDeCadastrados == false)
             {
                 funcionariosCadastros.Add(funcionario);
-            }
 
-            //var dadosDosFuncionarios = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\funcionarios.txt";
-            //File.AppendAllText(dadosDosFuncionarios, funcionario.Nome);
+                //para trabalhar com arquivos
+
+                //abrir o arquivo
+                //escrever no arquivo
+                //dar nome ao arquivo
+                //salvar
+                //fechar
+
+                string nome = funcionario.Nome;
+                string cpf = funcionario.Cpf;
+                string dataCadastro = funcionario.DataDeCadastro.ToString();
+
+                //salvar funcionarios em arquivos 
+                var pastaDesktop = Environment.SpecialFolder.Desktop;
+
+                var localDaPastaDesktop = Environment.GetFolderPath(pastaDesktop);
+
+                var nomeDoArquivo = @"\dadosDosFuncionarios.txt";
+
+                File.AppendAllText(localDaPastaDesktop + nomeDoArquivo, nome);
+            }
         }
 
         public static IEnumerable<Funcionario> BuscarTodosOsFuncionarios()

@@ -148,6 +148,11 @@ namespace Empresa.CadastroFuncionarios
             {
                 EscreverNaTela($"Nome: {funcionario.Nome} Cpf: {funcionario.Cpf} Cadastrado em: {funcionario.DataDeCadastro}");
             }
+
+            EscreverNaTela("Pressione qualquer tecla para continuar");
+            Console.ReadKey();
+            LimparTela();
+            MenuPrincipal();
         }
 
         //toda vez que é omitido o modificador de acesso, então ele assume como private
