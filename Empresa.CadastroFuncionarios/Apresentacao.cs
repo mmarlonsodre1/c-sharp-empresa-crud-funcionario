@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Empresa.Model;
+using Empresa.Dados;
 
 namespace Empresa.CadastroFuncionarios
 {
@@ -208,6 +210,14 @@ namespace Empresa.CadastroFuncionarios
             BancoDeDados.Excluir(funcionario);
 
             MenuPrincipal();
+        }
+
+        public static BancoDeDados BancoDeDados
+        {
+            get
+            {
+                return new BancoDeDadosDeArquivos();
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Empresa.CadastroFuncionarios
+namespace Empresa.Model
 {
     //int, float, decimal para numeros
     //string para textos
@@ -29,6 +27,13 @@ namespace Empresa.CadastroFuncionarios
             Nome = nome;
             Cpf = cpf;
             DataDeCadastro = DateTime.Now;
+        }
+
+        public Funcionario(string nome, string cpf, DateTime dataDeCadastro)
+        {
+            Nome = nome;
+            Cpf = cpf;
+            DataDeCadastro = dataDeCadastro;
         }
     }
 
