@@ -9,6 +9,8 @@ namespace Empresa.CadastroFuncionarios
 {
     class Apresentacao
     {
+        private static BancoDeDados _bancoDeDados;
+
         private static void EscreverNaTela(string texto)
         {
             Console.WriteLine(texto);
@@ -211,12 +213,17 @@ namespace Empresa.CadastroFuncionarios
 
             MenuPrincipal();
         }
-
         public static BancoDeDados BancoDeDados
         {
             get
             {
-                return new BancoDeDadosDeArquivos();
+                _bancoDeDados ??= new BancoDeDadosDeArquivos();
+                BancoDeDados = _bancoDeDados;
+                return _bancoDeDados;
+            }
+            set
+            {
+                _bancoDeDados = value;
             }
         }
     }
