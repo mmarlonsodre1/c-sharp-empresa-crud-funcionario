@@ -4,7 +4,7 @@ using Empresa.Model;
 
 namespace Empresa.Dados
 {
-    public class BancoDeDadosSql : BancoDeDados
+    public class RepositorioDeFuncionariosBancoSql : RepositorioDeFuncionarios
     {
         public override Funcionario BuscarFuncionarioPelo(string cpf)
         {
@@ -31,9 +31,18 @@ namespace Empresa.Dados
             throw new NotImplementedException();
         }
 
-        public override void Salvar(Funcionario funcionario)
+        protected override void AlterarExistente(Funcionario funcionario)
         {
             throw new NotImplementedException();
+        }
+
+        protected override void CriarNovo(Funcionario funcionario)
+        {
+            //abrir conexao com banco de dados
+            //escrever o insert utilizando os dados
+            //insert into funcionar (...)
+            //efetivar o comando de insert
+            //fechar conexao com banco de dados
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Empresa.Model
 {
@@ -13,8 +15,9 @@ namespace Empresa.Model
     //classe é uma estrutura para criar objetos
     public class Funcionario
     {
-        public string Nome { get; set; }
+        public int Id { get; set; }
         public string Cpf { get; set; }
+        public string Nome { get; set; }
         public DateTime DataDeCadastro { get; private set; }
 
         public Funcionario()
@@ -35,6 +38,21 @@ namespace Empresa.Model
             Cpf = cpf;
             DataDeCadastro = dataDeCadastro;
         }
+
+        private bool EstaBloqueado;
+        public void Bloquear()
+        {
+            EstaBloqueado = true;
+        }
+    }
+
+    public interface IFuncionario
+    {
+        int Id { get; set; }
+        string Cpf { get; set; }
+        string Nome { get; set; }
+        DateTime DataDeCadastro { get; }
+        void Bloquear();
     }
 
     //funcionario.DataDeCadastro;

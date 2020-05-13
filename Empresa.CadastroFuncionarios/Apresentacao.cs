@@ -212,11 +212,11 @@ namespace Empresa.CadastroFuncionarios
             MenuPrincipal();
         }
 
-        public static BancoDeDados BancoDeDados
+        public static RepositorioDeFuncionarios BancoDeDados
         {
             get
             {
-                return new BancoDeDadosDeArquivos();
+                return new RepositorioDeFuncionariosDeArquivos();
             }
         }
     }

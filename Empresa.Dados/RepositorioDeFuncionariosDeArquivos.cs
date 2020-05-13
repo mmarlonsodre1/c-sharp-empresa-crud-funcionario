@@ -7,24 +7,8 @@ using Empresa.Model;
 
 namespace Empresa.Dados
 {
-
-    public class BancoDeDadosDeArquivos : BancoDeDados
+    public class RepositorioDeFuncionariosDeArquivos : RepositorioDeFuncionarios
     {
-        public override void Salvar(Funcionario funcionario)
-        {
-            bool funcionarioJaExisteNaListaDeCadastrados = false;
-
-            //executar essa linha somente se o funcionario não existe na lista de cadastrados
-            if (funcionarioJaExisteNaListaDeCadastrados == false)
-            {
-                string nomeDoArquivo = ObterNomeArquivo();
-
-                string formato = $"{funcionario.Cpf},{funcionario.Nome},{funcionario.DataDeCadastro.ToString()};";
-
-                File.AppendAllText(nomeDoArquivo, formato);
-            }
-        }
-
         public override IEnumerable<Funcionario> BuscarTodosOsFuncionarios()
         {
             string nomeDoArquivo = ObterNomeArquivo();
@@ -82,6 +66,20 @@ namespace Empresa.Dados
         }
 
         public override Funcionario BuscarFuncionarioPelo(string cpf)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void CriarNovo(Funcionario funcionario)
+        {
+            string nomeDoArquivo = ObterNomeArquivo();
+
+            string formato = $"{funcionario.Cpf},{funcionario.Nome},{funcionario.DataDeCadastro.ToString()};";
+
+            File.AppendAllText(nomeDoArquivo, formato);
+        }
+
+        protected override void AlterarExistente(Funcionario funcionario)
         {
             throw new NotImplementedException();
         }

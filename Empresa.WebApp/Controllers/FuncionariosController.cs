@@ -13,10 +13,10 @@ namespace Empresa.WebApp.Controllers
     {
         public FuncionariosController()
         {
-            Bd = new BancoDeDadosDeArquivos();
+            Bd = new RepositorioDeFuncionariosDeArquivos();
         }
 
-        private readonly BancoDeDados Bd;
+        private readonly RepositorioDeFuncionarios Bd;
 
         // GET: Funcionarios
         public ActionResult Index()

@@ -8,31 +8,22 @@ namespace Empresa.Dados
 {
     //abstração = utilizar classes, na maioria das vezes
     //encapsulamento = uso correto de métodos e modificadores de acesso
-    public class BancoDeDadosEmMemoria : BancoDeDados
+    public class RepositorioDeFuncionariosEmMemoria : RepositorioDeFuncionarios
     {
         //não usar em memória e usar arquivos ou bancos de dados
         private static List<Funcionario> funcionariosCadastros = new List<Funcionario>();
 
-        public override void Salvar(Funcionario funcionario)
+        protected override void CriarNovo(Funcionario funcionario)
         {
-            bool funcionarioJaExisteNaListaDeCadastrados = false;
-
-            //algoritmo para dizer se já existe na lista ou não
-            foreach (var func in funcionariosCadastros)
-            {
-                if (func == funcionario)
-                {
-                    funcionarioJaExisteNaListaDeCadastrados = true;
-                }
-            }
-
-            //executar essa linha somente se o funcionario não existe na lista de cadastrados
-            if (funcionarioJaExisteNaListaDeCadastrados == false)
-            {
-                funcionariosCadastros.Add(funcionario);
-            }
+            funcionariosCadastros.Add(funcionario);
         }
 
+        protected override void AlterarExistente(Funcionario funcionario)
+        {
+            funcionariosCadastros.Remove(funcionario);
+            funcionariosCadastros.Add(funcionario);
+        }
+        
         public override IEnumerable<Funcionario> BuscarTodosOsFuncionarios()
         {
             return funcionariosCadastros;
