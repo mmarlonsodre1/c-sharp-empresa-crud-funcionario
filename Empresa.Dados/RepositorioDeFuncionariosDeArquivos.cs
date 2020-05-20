@@ -13,6 +13,12 @@ namespace Empresa.Dados
         {
             string nomeDoArquivo = ObterNomeArquivo();
 
+            if (!File.Exists(nomeDoArquivo))
+            {
+                File.Create(nomeDoArquivo);
+                
+            }
+
             string resultado = File.ReadAllText(nomeDoArquivo);
 
             //identificar cada funcionario
@@ -67,7 +73,15 @@ namespace Empresa.Dados
 
         public override Funcionario BuscarFuncionarioPelo(string cpf)
         {
-            throw new NotImplementedException();
+            var funcionarios = this.BuscarTodosOsFuncionarios();
+           
+            foreach(Funcionario funcionario in funcionarios)
+            {
+                if (funcionario.Cpf == cpf)
+                    return funcionario;
+            }
+
+            return null;
         }
 
         protected override void CriarNovo(Funcionario funcionario)
