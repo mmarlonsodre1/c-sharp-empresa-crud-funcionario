@@ -19,6 +19,7 @@ namespace Empresa.Model
         public string Cpf { get; set; }
         public string Nome { get; set; }
         public DateTime DataDeCadastro { get; private set; }
+        public DateTime DataDeNascimento { get; set; }
 
         public Funcionario()
         {
@@ -43,6 +44,11 @@ namespace Empresa.Model
         public void Bloquear()
         {
             EstaBloqueado = true;
+        }
+
+        public int ObterDiasRestantesParaAniversario()
+        {
+            return 0;
         }
     }
 

@@ -23,9 +23,12 @@ namespace Empresa.Dados.Testes
         }
 
         [Fact]
-        public void Test2()
+        public void TestSalvarFuncionar()
         {
+            var funcionario = new Funcionario("123", "123");
 
+            var repositorio = new RepositorioDeFuncionariosDeArquivos();
+            repositorio.Salvar(funcionario);
         }
     }
 }
