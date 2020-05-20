@@ -13,10 +13,11 @@ namespace Empresa.Dados
         {
             string nomeDoArquivo = ObterNomeArquivo();
 
+            FileStream arquivo;
             if (!File.Exists(nomeDoArquivo))
             {
-                File.Create(nomeDoArquivo);
-                
+                arquivo = File.Create(nomeDoArquivo);
+                arquivo.Close();
             }
 
             string resultado = File.ReadAllText(nomeDoArquivo);
