@@ -46,9 +46,7 @@ namespace Empresa.CadastroFuncionarios
             EscreverNaTela("Entre com o CPF:");
             string cpf = Console.ReadLine();
 
-            var funcionario = new Funcionario(nome, cpf);
-
-            BancoDeDados.Salvar(funcionario);
+            Aplicacao.Class1.CadastrarFuncionario(nome, cpf);
 
             EscreverNaTela("Cadastrado com sucesso!");
             EscreverNaTela("Pressione qualquer tecla para continuar");

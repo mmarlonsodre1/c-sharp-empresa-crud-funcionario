@@ -96,7 +96,8 @@ namespace Empresa.Dados
 
         protected override void AlterarExistente(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+            //codificar a alteração
+
         }
     }
 }

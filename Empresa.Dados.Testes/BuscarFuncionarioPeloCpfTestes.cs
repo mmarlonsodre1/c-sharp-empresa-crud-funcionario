@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Empresa.Dados.Testes
 {
-    public class UnitTest1
+    public class BuscarFuncionarioPeloCpfTestes
     {
         [Fact]
         public void TestBuscaFuncionarioPeloCpf()
@@ -21,14 +21,21 @@ namespace Empresa.Dados.Testes
             //Então // Then //Assert
             Assert.True(funcionario.Cpf == funcionarioEncontrado.Cpf);
         }
+    }
 
+    public class SalvarFuncionarioTestes
+    {
         [Fact]
         public void TestSalvarFuncionar()
         {
+            //Given
             var funcionario = new Funcionario("123", "123");
-
             var repositorio = new RepositorioDeFuncionariosDeArquivos();
+
+            //When
             repositorio.Salvar(funcionario);
+
+            //Then
         }
     }
 }
