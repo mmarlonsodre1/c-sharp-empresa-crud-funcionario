@@ -8,3 +8,11 @@ Deve permitir consultar funcionário pela data de cadastro.
 Deve exibir funcionário mais antigo na empresa.
 Deve permitir excluir funcionário.
 Deve permitir alterar nome do funcionário e não alterar a data de cadastro.
+
+
+
+Não pode existir 2 funcionários com msmo CPF.
+
+O CPF deve ser validado no momento do cadastro.
+
+Quando exibir detalhes do funcionário, dizer se é o dia de pgto do funcionário.

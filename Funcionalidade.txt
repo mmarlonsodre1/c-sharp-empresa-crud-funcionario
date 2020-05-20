@@ -1,0 +1,13 @@
+Funcionalidade: Exibir dia de pgto do funcionário na exibição dos detalhes do funcionário
+
+Cenário: Exibir dia de ptgto quando houver dia de pgto cadastro
+Dado que acessaram a tela de exibir detalhes do funcionário
+Quando exibir detalhes do funcionário
+Então exibir dia de pagamento do funcionario
+
+Cenário: Exibir erro 
+Dado que acessaram a tela de exibir detalhes do funcionário
+Quando exibir detalhes do funcionário
+E o funcionário não tiver data de pgto cadastrado
+Então exibir erro "dia de pagamento não cadastrado"
+E encaminhar para interface de alteração do funcionário

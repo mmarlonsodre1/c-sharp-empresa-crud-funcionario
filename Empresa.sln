@@ -7,14 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.CadastroFuncionario
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{6AF84040-58E1-4287-93E4-2EE423C04AD8}"
 	ProjectSection(SolutionItems) = preProject
+		Funcionalidade.txt = Funcionalidade.txt
 		Requisitos.txt = Requisitos.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa.Dados", "Empresa.Dados\Empresa.Dados.csproj", "{3AE9D29A-2505-4AE2-8359-06FB48D08F8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.Dados", "Empresa.Dados\Empresa.Dados.csproj", "{3AE9D29A-2505-4AE2-8359-06FB48D08F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa.Model", "Empresa.Model\Empresa.Model.csproj", "{3ADB67A7-0403-4C63-B2B6-07C14F3576C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.Model", "Empresa.Model\Empresa.Model.csproj", "{3ADB67A7-0403-4C63-B2B6-07C14F3576C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa.WebApp", "Empresa.WebApp\Empresa.WebApp.csproj", "{C36AEB71-61C4-4A1F-9069-FFBF5DFE6A6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Empresa.WebApp", "Empresa.WebApp\Empresa.WebApp.csproj", "{C36AEB71-61C4-4A1F-9069-FFBF5DFE6A6F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentacao", "Apresentacao", "{48BBE58D-B790-4BB2-9F88-B2D0A2FFC423}"
 EndProject

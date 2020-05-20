@@ -7,10 +7,8 @@ using Empresa.Dados;
 
 namespace Empresa.CadastroFuncionarios
 {
-    class Apresentacao
+    public static class Apresentacao
     {
-        private static BancoDeDados _bancoDeDados;
-
         private static void EscreverNaTela(string texto)
         {
             Console.WriteLine(texto);
@@ -43,10 +41,10 @@ namespace Empresa.CadastroFuncionarios
             LimparTela();
 
             EscreverNaTela("Entre com o Nome:");
-            string nome = Console.ReadLine(); //armazenar numa variável o nome do funcionário
+            string nome = Console.ReadLine();
 
-            EscreverNaTela("Entre com o CPF:"); //pedir cpf
-            string cpf = Console.ReadLine(); //armazenar cpf
+            EscreverNaTela("Entre com o CPF:");
+            string cpf = Console.ReadLine();
 
             var funcionario = new Funcionario(nome, cpf);
 
@@ -213,11 +211,12 @@ namespace Empresa.CadastroFuncionarios
 
             MenuPrincipal();
         }
-        public static BancoDeDados BancoDeDados
+
+        public static RepositorioDeFuncionarios BancoDeDados
         {
             get
             {
-                _bancoDeDados ??= new BancoDeDadosDeArquivos();
+                _bancoDeDados ??= new RepositorioDeFuncionariosDeArquivos();
                 BancoDeDados = _bancoDeDados;
                 return _bancoDeDados;
             }
@@ -226,5 +225,7 @@ namespace Empresa.CadastroFuncionarios
                 _bancoDeDados = value;
             }
         }
+
+        private static RepositorioDeFuncionarios _bancoDeDados;
     }
 }
