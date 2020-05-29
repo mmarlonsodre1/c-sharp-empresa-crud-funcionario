@@ -40,32 +40,9 @@ namespace Empresa.Model
             DataDeCadastro = dataDeCadastro;
         }
 
-        private bool EstaBloqueado;
-        public void Bloquear()
-        {
-            EstaBloqueado = true;
-        }
-
         public int ObterDiasRestantesParaAniversario()
         {
             return 0;
         }
     }
-
-    public interface IFuncionario
-    {
-        int Id { get; set; }
-        string Cpf { get; set; }
-        string Nome { get; set; }
-        DateTime DataDeCadastro { get; }
-        void Bloquear();
-    }
-
-    //funcionario.DataDeCadastro;
-
-    //abstração = utilizar classes, na maioria das vezes
-    //encapsulamento = uso correto de métodos e modificadores de acesso
-
-    //herança
-    //polimorfismo
 }

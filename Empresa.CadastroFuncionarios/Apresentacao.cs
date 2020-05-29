@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Empresa.Model;
 using Empresa.Dados;
+using Empresa.Aplicacao;
 
 namespace Empresa.CadastroFuncionarios
 {
@@ -46,7 +47,7 @@ namespace Empresa.CadastroFuncionarios
             EscreverNaTela("Entre com o CPF:");
             string cpf = Console.ReadLine();
 
-            Aplicacao.Class1.CadastrarFuncionario(nome, cpf);
+            FuncionarioApp.CadastrarFuncionario(nome, cpf);
 
             EscreverNaTela("Cadastrado com sucesso!");
             EscreverNaTela("Pressione qualquer tecla para continuar");

@@ -4,7 +4,7 @@ using System;
 
 namespace Empresa.Aplicacao
 {
-    public class Class1
+    public class FuncionarioApp
     {
         public static void CadastrarFuncionario(string nome, string cpf)
         {
