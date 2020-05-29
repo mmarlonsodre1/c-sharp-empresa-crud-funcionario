@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Security.Principal;
 using Empresa.Model;
+using System.Linq;
 
 namespace Empresa.Dados
 {
@@ -64,7 +65,12 @@ namespace Empresa.Dados
 
         public override IEnumerable<Funcionario> BuscarTodosOsFuncionarios(string nome)
         {
-            throw new NotImplementedException();
+
+            //SEE: https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/concepts/linq/
+            return (from x in BuscarTodosOsFuncionarios()
+                    where x.Nome.Contains(nome)
+                    orderby x.Nome
+                    select x);
         }
 
         public override IEnumerable<Funcionario> BuscarTodosOsFuncionarios(DateTime dataDeCadastro)
@@ -74,16 +80,12 @@ namespace Empresa.Dados
 
         public override Funcionario BuscarFuncionarioPelo(string cpf)
         {
-            var funcionarios = this.BuscarTodosOsFuncionarios();
-           
-            foreach(Funcionario funcionario in funcionarios)
-            {
-                if (funcionario.Cpf == cpf)
-                    return funcionario;
-            }
-
-            return null;
+            //SEE: https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/concepts/linq/
+            return (from x in BuscarTodosOsFuncionarios()
+                    where x.Cpf == cpf
+                    select x).FirstOrDefault();
         }
+    
 
         protected override void CriarNovo(Funcionario funcionario)
         {
