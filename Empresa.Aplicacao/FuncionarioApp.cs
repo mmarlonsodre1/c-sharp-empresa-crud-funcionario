@@ -6,11 +6,19 @@ namespace Empresa.Aplicacao
 {
     public class FuncionarioApp
     {
-        public static void CadastrarFuncionario(string nome, string cpf)
+        public static CadastrarFuncionarioResult CadastrarFuncionario(string nome, string cpf)
         {
             var funcionario = new Funcionario(nome, cpf);
 
-            BancoDeDados.Salvar(funcionario);
+            try
+            {
+                BancoDeDados.Salvar(funcionario);
+                return new CadastrarFuncionarioResult { CadastradoComSucesso = true };
+            }
+            catch (Exception e)
+            {
+                return new CadastrarFuncionarioResult { CadastradoComSucesso = false };
+            }
         }
 
         public static RepositorioDeFuncionarios BancoDeDados
@@ -28,5 +36,10 @@ namespace Empresa.Aplicacao
         }
 
         private static RepositorioDeFuncionarios _bancoDeDados;
+    }
+
+    public class CadastrarFuncionarioResult
+    {
+        public bool CadastradoComSucesso { get; set; }
     }
 }
