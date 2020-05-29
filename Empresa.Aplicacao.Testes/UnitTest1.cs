@@ -11,7 +11,7 @@ namespace Empresa.Aplicacao.Testes
             string nome = "nome";
             string cpf = "cpf";
 
-            var result = Class1.CadastrarFuncionario(nome, cpf);
+            var result = FuncionarioApp.CadastrarFuncionario(nome, cpf);
 
             Assert.True(result.CadastradoComSucesso);
         }
